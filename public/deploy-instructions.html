@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Deploy CahayaDigital25 ke InfinityFree</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #e53e3e;
+            border-bottom: 2px solid #e5e5e5;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #4a5568;
+            margin-top: 30px;
+        }
+        pre, code {
+            background-color: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: Consolas, monospace;
+        }
+        pre {
+            padding: 15px;
+            overflow-x: auto;
+        }
+        .step {
+            background-color: #f9f9f9;
+            border-left: 4px solid #e53e3e;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .note {
+            background-color: #ebf8ff;
+            border-left: 4px solid #4299e1;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .warning {
+            background-color: #fffaf0;
+            border-left: 4px solid #ed8936;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f7fafc;
+        }
+        .button {
+            display: inline-block;
+            background-color: #e53e3e;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .button:hover {
+            background-color: #c53030;
+        }
+    </style>
+</head>
+<body>
+    <h1>Panduan Deploy CahayaDigital25 ke InfinityFree</h1>
+    
+    <div class="note">
+        <strong>Status:</strong> Panduan ini menjelaskan cara deploy website CahayaDigital25 ke hosting InfinityFree dengan domain cahayadigital25.rf.gd
+    </div>
+    
+    <h2>Daftar Isi</h2>
+    <ol>
+        <li><a href="#manual">Deploy Manual</a></li>
+        <li><a href="#auto">Deploy Otomatis</a></li>
+        <li><a href="#dns">Konfigurasi DNS</a></li>
+        <li><a href="#troubleshooting">Troubleshooting</a></li>
+    </ol>
+
+    <h2 id="manual">1. Deploy Manual</h2>
+    
+    <div class="step">
+        <h3>Langkah 1: Download File Deployment</h3>
+        <p>Download file <code>cahayadigital25-github-pages.zip</code> dari Replit atau GitHub repository.</p>
+    </div>
+    
+    <div class="step">
+        <h3>Langkah 2: Login ke InfinityFree</h3>
+        <p>Login ke <a href="https://app.infinityfree.net/login" target="_blank">InfinityFree Control Panel</a>.</p>
+    </div>
+    
+    <div class="step">
+        <h3>Langkah 3: Upload File ke InfinityFree</h3>
+        <ol>
+            <li>Buka File Manager untuk domain <code>cahayadigital25.rf.gd</code></li>
+            <li>Navigasi ke folder <code>/htdocs</code> (root folder)</li>
+            <li>Upload semua file dari zip yang sudah diekstrak</li>
+            <li>Pastikan struktur file dan folder terjaga</li>
+        </ol>
+    </div>
+    
+    <div class="step">
+        <h3>Langkah 4: Atur Izin File (Permissions)</h3>
+        <p>Setelah upload, atur izin file dan folder:</p>
+        <ul>
+            <li>Pilih semua file, klik kanan, pilih <strong>Change Permissions</strong>, atur ke <code>644</code></li>
+            <li>Pilih semua folder, klik kanan, pilih <strong>Change Permissions</strong>, atur ke <code>755</code></li>
+        </ul>
+    </div>
+
+    <h2 id="auto">2. Deploy Otomatis</h2>
+    
+    <div class="note">
+        <p>Untuk kemudahan deploy di masa depan, kami telah menyiapkan script deploy otomatis <code>deploy_to_infinityfree.php</code>.</p>
+    </div>
+    
+    <div class="step">
+        <h3>Langkah 1: Upload Script Deploy</h3>
+        <p>Upload file <code>deploy_to_infinityfree.php</code> ke folder root InfinityFree Anda.</p>
+    </div>
+    
+    <div class="step">
+        <h3>Langkah 2: Jalankan Script Deploy</h3>
+        <p>Akses script via browser dengan memasukkan URL:</p>
+        <pre>https://cahayadigital25.rf.gd/deploy_to_infinityfree.php?key=Onomah1337*$</pre>
+        <p>Parameter <code>key</code> adalah kunci autentikasi yang sama dengan login admin.</p>
+    </div>
+    
+    <div class="step">
+        <h3>Langkah 3: Deploy Penuh (Opsional)</h3>
+        <p>Untuk mendeploy semua file sekaligus, tambahkan parameter <code>full=true</code>:</p>
+        <pre>https://cahayadigital25.rf.gd/deploy_to_infinityfree.php?key=Onomah1337*$&full=true</pre>
+    </div>
+
+    <div class="warning">
+        <p><strong>Penting:</strong> Script deploy otomatis mengambil file dari GitHub repository. Pastikan perubahan terbaru sudah di-push ke GitHub.</p>
+    </div>
+
+    <h2 id="dns">3. Konfigurasi DNS</h2>
+    
+    <div class="step">
+        <h3>Langkah 1: Konfigurasi DNS di InfinityFree</h3>
+        <ol>
+            <li>Buka bagian <strong>Domains</strong> di panel InfinityFree</li>
+            <li>Pilih domain <code>cahayadigital25.rf.gd</code></li>
+            <li>Buka bagian <strong>DNS Records</strong></li>
+            <li>Tambahkan CNAME record untuk mengarahkan ke domain Replit:
+                <ul>
+                    <li>Type: <code>CNAME</code></li>
+                    <li>Name: <code>www</code> (atau <code>@</code> untuk root domain)</li>
+                    <li>Value: URL Replit Anda (contoh: <code>cahayadigital25.username.repl.co</code>)</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <div class="step">
+        <h3>Langkah 2: Konfigurasi Custom Domain di Replit</h3>
+        <ol>
+            <li>Buka project di Replit, klik <strong>Tools</strong>, pilih <strong>Deployments</strong></li>
+            <li>Di bagian Custom Domain, tambahkan <code>cahayadigital25.rf.gd</code></li>
+            <li>Ikuti instruksi untuk menambahkan TXT record di InfinityFree</li>
+        </ol>
+    </div>
+
+    <h2 id="troubleshooting">4. Troubleshooting</h2>
+    
+    <div class="step">
+        <h3>Error 403 Forbidden</h3>
+        <p>Jika mendapat error 403, coba solusi berikut:</p>
+        <ol>
+            <li>Ganti .htaccess dengan .htaccess.minimal (tersedia dalam ZIP)</li>
+            <li>Periksa izin file dan folder (644 untuk file, 755 untuk folder)</li>
+            <li>Pastikan file index.php dan index.html ada di root</li>
+        </ol>
+    </div>
+    
+    <div class="step">
+        <h3>Halaman Tidak Terhubung</h3>
+        <p>Jika DNS belum terhubung:</p>
+        <ol>
+            <li>Tunggu propagasi DNS (24-48 jam)</li>
+            <li>Periksa konfigurasi DNS dengan tool seperti <a href="https://dnschecker.org" target="_blank">DNSChecker</a></li>
+            <li>Pastikan nameserver di InfinityFree sudah benar</li>
+        </ol>
+    </div>
+    
+    <div class="step">
+        <h3>File/Konten Tidak Terupdate</h3>
+        <p>Jika konten tidak terupdate:</p>
+        <ol>
+            <li>Clear cache browser Anda</li>
+            <li>Gunakan mode incognito untuk testing</li>
+            <li>Jalankan kembali script deploy_to_infinityfree.php dengan parameter <code>full=true</code></li>
+        </ol>
+    </div>
+
+    <div class="note">
+        <p>Referensi dokumen lengkap berada di file <code>INFINITY_FREE_FIX.md</code> untuk troubleshooting lebih detail.</p>
+    </div>
+
+    <h2>Bantuan Tambahan</h2>
+    <p>Jika Anda membutuhkan bantuan lebih lanjut, silakan hubungi tim support kami melalui admin@cahayadigital25.rf.gd.</p>
+    
+    <p style="margin-top: 50px; text-align: center;">
+        <a href="/" class="button">Kembali ke Beranda</a>
+    </p>
+</body>
+</html>

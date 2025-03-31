@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cahayadigital25.rf.gd/sitemap.xml
+
+# Disallow admin panel access
+Disallow: /admin/
+Disallow: /admin/panel/login.php
+Disallow: /api/
+
+# Crawl-delay
+Crawl-delay: 10

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Otomatis Deploy CahayaDigital25</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #e53e3e;
+        }
+        h1 {
+            border-bottom: 2px solid #e5e5e5;
+            padding-bottom: 10px;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        pre, code {
+            background-color: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: Consolas, monospace;
+        }
+        pre {
+            padding: 15px;
+            overflow-x: auto;
+        }
+        .step {
+            background-color: #f9f9f9;
+            border-left: 4px solid #e53e3e;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .note {
+            background-color: #ebf8ff;
+            border-left: 4px solid #4299e1;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .warning {
+            background-color: #fffaf0;
+            border-left: 4px solid #ed8936;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border: 1px solid #e5e5e5;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f7fafc;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #e53e3e;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .btn:hover {
+            background-color: #c53030;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Panduan Otomatis Deploy CahayaDigital25</h1>
+        
+        <div class="note">
+            Panduan ini menjelaskan cara menggunakan sistem otomatis deploy CahayaDigital25 untuk mentransfer website dari Replit/GitHub ke hosting InfinityFree dengan domain cahayadigital25.rf.gd
+        </div>
+        
+        <h2>Daftar Isi</h2>
+        <ol>
+            <li><a href="#intro">Pengenalan Sistem Auto Deploy</a></li>
+            <li><a href="#install">Instalasi Script Auto Deploy</a></li>
+            <li><a href="#manual">Deployment Manual dengan Web Interface</a></li>
+            <li><a href="#api">Deployment Otomatis dengan API</a></li>
+            <li><a href="#webhook">Menggunakan GitHub Webhook</a></li>
+            <li><a href="#troubleshoot">Troubleshooting</a></li>
+        </ol>
+    </div>
+    
+    <div class="container" id="intro">
+        <h2>1. Pengenalan Sistem Auto Deploy</h2>
+        
+        <p>Sistem Auto Deploy CahayaDigital25 terdiri dari dua komponen utama:</p>
+        
+        <ul>
+            <li><strong>auto_deploy.php</strong> - Script utama yang mengunduh file dari GitHub dan menguploadnya ke hosting InfinityFree melalui FTP</li>
+            <li><strong>github_webhook.php</strong> - Script tambahan yang menerima webhook dari GitHub untuk memicu deployment otomatis saat ada perubahan di repository</li>
+        </ul>
+        
+        <p>Dengan sistem ini, Anda dapat:</p>
+        <ul>
+            <li>Melakukan deployment manual melalui web interface</li>
+            <li>Mengotomatisasi deployment dengan API call</li>
+            <li>Mengatur deployment otomatis setiap kali ada push ke repository GitHub</li>
+        </ul>
+        
+        <div class="note">
+            <p>Keunggulan sistem ini:</p>
+            <ul>
+                <li>Tidak perlu login ke File Manager InfinityFree untuk mengupload file secara manual</li>
+                <li>Proses deployment lebih cepat dan terstruktur</li>
+                <li>Mendukung deployment sebagian atau keseluruhan website</li>
+                <li>Menjaga log aktivitas deployment untuk troubleshooting</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="container" id="install">
+        <h2>2. Instalasi Script Auto Deploy</h2>
+        
+        <div class="step">
+            <h3>Langkah 1: Download File Deployment</h3>
+            <p>Download file <code>cahayadigital25-auto-deploy.zip</code> dari Replit.</p>
+        </div>
+        
+        <div class="step">
+            <h3>Langkah 2: Ekstrak File</h3>
+            <p>Ekstrak file <code>cahayadigital25-auto-deploy.zip</code> untuk mendapatkan dua file:</p>
+            <ul>
+                <li><code>auto_deploy.php</code></li>
+                <li><code>github_webhook.php</code></li>
+            </ul>
+        </div>
+        
+        <div class="step">
+            <h3>Langkah 3: Upload Script ke InfinityFree</h3>
+            <ol>
+                <li>Login ke File Manager InfinityFree</li>
+                <li>Navigasi ke folder root (htdocs) domain cahayadigital25.rf.gd</li>
+                <li>Upload kedua file PHP tersebut</li>
+            </ol>
+        </div>
+        
+        <div class="step">
+            <h3>Langkah 4: Atur Izin File</h3>
+            <p>Atur izin (permissions) untuk kedua file tersebut menjadi <code>644</code></p>
+        </div>
+        
+        <div class="warning">
+            <p><strong>Penting:</strong> Pastikan Anda memiliki kredensial FTP InfinityFree untuk menggunakan sistem ini. Informasi ini biasanya tersedia di control panel InfinityFree Anda di bagian FTP Accounts.</p>
+        </div>
+    </div>
+    
+    <div class="container" id="manual">
+        <h2>3. Deployment Manual dengan Web Interface</h2>
+        
+        <p>Setelah script terupload, Anda dapat mengakses web interface untuk melakukan deployment manual.</p>
+        
+        <div class="step">
+            <h3>Langkah 1: Akses Web Interface</h3>
+            <p>Buka browser dan kunjungi URL:</p>
+            <pre>http://cahayadigital25.rf.gd/auto_deploy.php</pre>
+        </div>
+        
+        <div class="step">
+            <h3>Langkah 2: Isi Kredensial FTP</h3>
+            <ol>
+                <li>Masukkan FTP Username InfinityFree Anda (biasanya dimulai dengan "epiz_")</li>
+                <li>Masukkan FTP Password</li>
+                <li>Pilih jenis deployment:
+                    <ul>
+                        <li><strong>Full Deployment</strong> - Mengunduh dan mengupload seluruh website</li>
+                        <li><strong>Partial Deployment</strong> - Hanya mengupload file-file utama yang sering diupdate</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+        
+        <div class="step">
+            <h3>Langkah 3: Mulai Deployment</h3>
+            <p>Klik tombol "Mulai Deployment" dan tunggu proses selesai. Status deployment akan ditampilkan secara real-time pada halaman.</p>
+        </div>
+        
+        <div class="note">
+            <p>Setelah deployment selesai, Anda dapat melihat log lengkap di tab "Deployment Logs" untuk memastikan semua file berhasil diupload.</p>
+        </div>
+    </div>
+    
+    <div class="container" id="api">
+        <h2>4. Deployment Otomatis dengan API</h2>
+        
+        <p>Untuk mengotomatisasi deployment, Anda dapat menggunakan API yang disediakan oleh script.</p>
+        
+        <div class="step">
+            <h3>Format URL API</h3>
+            <pre>http://cahayadigital25.rf.gd/auto_deploy.php?api=true&key=Onomah1337*$&ftp_user=YOUR_FTP_USER&ftp_pass=YOUR_FTP_PASS&full=true</pre>
+            
+            <p>Parameter yang diperlukan:</p>
+            <ul>
+                <li><code>api=true</code> - Menandakan bahwa ini adalah API call</li>
+                <li><code>key=Onomah1337*$</code> - Kunci autentikasi</li>
+                <li><code>ftp_user=YOUR_FTP_USER</code> - Username FTP InfinityFree Anda</li>
+                <li><code>ftp_pass=YOUR_FTP_PASS</code> - Password FTP InfinityFree Anda</li>
+                <li><code>full=true|false</code> - Apakah melakukan full deployment (opsional, default: false)</li>
+            </ul>
+        </div>
+        
+        <div class="step">
+            <h3>Contoh Penggunaan dengan cURL</h3>
+            <pre>curl -X GET "http://cahayadigital25.rf.gd/auto_deploy.php?api=true&key=Onomah1337*$&ftp_user=epiz_xxxxx&ftp_pass=YOUR_PASSWORD&full=true"</pre>
+        </div>
+        
+        <div class="step">
+            <h3>Contoh Penggunaan dengan Scheduled Task</h3>
+            <p>Anda dapat menjalankan API secara terjadwal menggunakan cron job atau task scheduler:</p>
+            <pre>0 0 * * * wget -q -O /dev/null "http://cahayadigital25.rf.gd/auto_deploy.php?api=true&key=Onomah1337*$&ftp_user=epiz_xxxxx&ftp_pass=YOUR_PASSWORD&full=true"</pre>
+            <p>Contoh di atas akan menjalankan deployment setiap tengah malam.</p>
+        </div>
+        
+        <div class="warning">
+            <p><strong>Perhatian Keamanan:</strong> Simpan URL API dengan kredensial FTP di tempat yang aman. Jangan bagikan URL ini ke pihak yang tidak berwenang.</p>
+        </div>
+    </div>
+    
+    <div class="container" id="webhook">
+        <h2>5. Menggunakan GitHub Webhook</h2>
+        
+        <p>Anda dapat mengatur GitHub untuk mengirim webhook ke script <code>github_webhook.php</code> setiap kali ada push ke repository, sehingga website akan otomatis diupdate.</p>
+        
+        <div class="step">
+            <h3>Langkah 1: Akses Test Interface</h3>
+            <p>Pertama, pastikan webhook berfungsi dengan mengakses test interface:</p>
+            <pre>http://cahayadigital25.rf.gd/github_webhook.php?test=true</pre>
+            <p>Di sini Anda dapat isi kredensial FTP dan menjalankan deployment manual untuk memastikan semua berfungsi.</p>
+        </div>
+        
+        <div class="step">
+            <h3>Langkah 2: Konfigurasi webhook GitHub</h3>
+            <ol>
+                <li>Buka repository GitHub Anda</li>
+                <li>Klik "Settings" &gt; "Webhooks" &gt; "Add webhook"</li>
+                <li>Isi "Payload URL" dengan:
+                    <pre>http://cahayadigital25.rf.gd/github_webhook.php</pre>
+                </li>
+                <li>Set "Content type" ke "application/json"</li>
+                <li>Isi "Secret" dengan: <code>Onomah1337*$</code></li>
+                <li>Pilih "Just the push event" untuk event trigger</li>
+                <li>Centang "Active" dan klik "Add webhook"</li>
+            </ol>
+        </div>
+        
+        <div class="step">
+            <h3>Langkah 3: Edit File Konfigurasi Webhook</h3>
+            <p>Edit file <code>github_webhook.php</code> dan update kredensial FTP:</p>
+            <pre>
+// FTP settings (disimpan di sini untuk otomatisasi)
+'ftp_user' => 'epiz_xxxxx',          // Ganti dengan username FTP Anda
+'ftp_pass' => 'YOUR_PASSWORD',       // Ganti dengan password FTP Anda</pre>
+        </div>
+        
+        <div class="step">
+            <h3>Langkah 4: Uji Webhook</h3>
+            <p>Lakukan push perubahan ke repository GitHub Anda dan cek webhook log di GitHub (Settings > Webhooks) untuk memastikan webhook berhasil terkirim.</p>
+        </div>
+    </div>
+    
+    <div class="container" id="troubleshoot">
+        <h2>6. Troubleshooting</h2>
+        
+        <div class="step">
+            <h3>Masalah: Script Timeout</h3>
+            <p><strong>Solusi:</strong></p>
+            <ul>
+                <li>Gunakan Partial Deployment alih-alih Full Deployment</li>
+                <li>Edit file <code>auto_deploy.php</code> dan tingkatkan nilai <code>max_execution_time</code> (jika hosting mengizinkan)</li>
+                <li>Batasi jumlah file yang disinkronkan di seksi <code>files_to_sync</code></li>
+            </ul>
+        </div>
+        
+        <div class="step">
+            <h3>Masalah: Error FTP Connection</h3>
+            <p><strong>Solusi:</strong></p>
+            <ul>
+                <li>Pastikan kredensial FTP benar (username biasanya dimulai dengan "epiz_")</li>
+                <li>Periksa apakah InfinityFree membatasi koneksi FTP dari server eksternal</li>
+                <li>Coba gunakan mode pasif FTP (sudah diaktifkan di script)</li>
+            </ul>
+        </div>
+        
+        <div class="step">
+            <h3>Masalah: File Tidak Terupdate</h3>
+            <p><strong>Solusi:</strong></p>
+            <ul>
+                <li>Periksa log deployment untuk melihat file mana yang gagal diupload</li>
+                <li>Pastikan GitHub repository up-to-date</li>
+                <li>Coba clear cache browser Anda</li>
+                <li>Periksa izin file di server InfinityFree</li>
+            </ul>
+        </div>
+        
+        <div class="step">
+            <h3>Masalah: GitHub Webhook Tidak Berfungsi</h3>
+            <p><strong>Solusi:</strong></p>
+            <ul>
+                <li>Periksa log webhook di GitHub (Settings > Webhooks > Recent Deliveries)</li>
+                <li>Verifikasi URL webhook sudah benar dan dapat diakses publik</li>
+                <li>Pastikan secret webhook sudah benar</li>
+                <li>Cek file <code>webhook_logs.txt</code> di server untuk informasi error</li>
+            </ul>
+        </div>
+    </div>
+    
+    <p style="text-align: center; margin-top: 30px;">
+        <a href="/" class="btn">Kembali ke Beranda</a>
+    </p>
+</body>
+</html>
